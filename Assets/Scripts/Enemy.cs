@@ -7,8 +7,10 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        Vector3 direction = _target.transform.position - transform.position;
+        if (_target == null)
+            return;
 
+        Vector3 direction = _target.transform.position - transform.position;
         transform.position = Vector3.MoveTowards(transform.position,_target.transform.position,_speed*Time.deltaTime);
         transform.rotation = Quaternion.LookRotation(direction);
     }

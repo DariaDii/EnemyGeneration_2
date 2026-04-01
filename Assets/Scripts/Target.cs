@@ -18,7 +18,10 @@ public class Target : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position,_currentPoint.position,_speed*Time.deltaTime);
 
-        if (Vector3.Distance(transform.position, _currentPoint.position) < _distanceToTargetPoint)
+        Vector3 toTarget = _currentPoint.position - transform.position;
+        float distance = toTarget.sqrMagnitude;
+
+        if (distance < _distanceToTargetPoint*_distanceToTargetPoint)
         {
             if (_currentPoint == _startPoint)
                 _currentPoint = _endPoint;
